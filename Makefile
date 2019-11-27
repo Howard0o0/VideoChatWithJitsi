@@ -1,46 +1,24 @@
+CC		= gcc
+CFLAGS	= -Wall -O2 -g
+LDFLAGS	= -lm -lpaho-mqtt3c -lpaho-mqtt3a
+INCLUDES= -I $(shell pwd)/include
 
-CROSS_COMPILE = 
-AS		= $(CROSS_COMPILE)as
-LD		= $(CROSS_COMPILE)ld
-CC		= $(CROSS_COMPILE)gcc
-CPP		= $(CC) -E
-AR		= $(CROSS_COMPILE)ar
-NM		= $(CROSS_COMPILE)nm
+# user modify: subdir, target and objects
+VPATH 	=  src
+EXENAME =  VideoChatWithJitsi
+OBJECTS	=  main.o 
+OBJECTS += mqtt.o 
 
-STRIP		= $(CROSS_COMPILE)strip
-OBJCOPY		= $(CROSS_COMPILE)objcopy
-OBJDUMP		= $(CROSS_COMPILE)objdump
-
-export AS LD CC CPP AR NM
-export STRIP OBJCOPY OBJDUMP
-
-CFLAGS := -Wall -O2 -g
-CFLAGS += -I $(shell pwd)/include
-
-LDFLAGS := -lm 
-
-export CFLAGS LDFLAGS
-
-TOPDIR := $(shell pwd)
-export TOPDIR
-
-TARGET := videoChatWithJitsi
-
-
-obj-y += main.o
-
-
-all : 
-	make -C ./ -f $(TOPDIR)/Makefile.build
-	$(CC) $(LDFLAGS) -o $(TARGET) built-in.o
-
-
-clean:
-	rm -f $(shell find -name "*.o")
-	rm -f $(TARGET)
-
-distclean:
-	rm -f $(shell find -name "*.o")
-	rm -f $(shell find -name "*.d")
-	rm -f $(TARGET)
+# make target
+all:${OBJECTS}
+	${CC} -o ${EXENAME} *.o ${LDFLAGS} ${INCLUDES}
 	
+# make clean
+clean:
+	rm -rf ${EXENAME} ${OBJECTS} 
+
+# dependence	
+%.o : %.c
+	${CC} ${CFLAGS} ${INCLUDES} -c $< -o $@
+%.o : %.cc
+	${CC} ${CFLAGS} ${INCLUDES} -c $< -o $@
