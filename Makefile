@@ -1,7 +1,7 @@
 CC		= gcc
 CFLAGS	= -Wall -O2 -g
 LDFLAGS	= -lm -lpaho-mqtt3c -lpaho-mqtt3a
-INCLUDES= -I $(shell pwd)/include
+INCLUDES= -I $(shell pwd)/inc
 
 # user modify: subdir, target and objects
 VPATH 	=  src
