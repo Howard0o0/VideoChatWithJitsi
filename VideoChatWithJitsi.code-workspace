@@ -67,7 +67,9 @@
 			"utility": "c",
 			"mqttclient.h": "c",
 			"mqtt.h": "c",
-			"stdlib.h": "c"
+			"stdlib.h": "c",
+			"remotemachine.h": "c",
+			"string.h": "c"
 		}
 	}
 }

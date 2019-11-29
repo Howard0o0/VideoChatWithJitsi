@@ -7,8 +7,9 @@ OBJS = objs/
 # user modify: subdir, target and objects
 VPATH 	=  src
 EXENAME =  VideoChatWithJitsi
-OBJECTS	=  main.o 
-OBJECTS += mqtt.o 
+OBJECTS	=  main.o \
+			mqtt.o
+
 
 
 # make target

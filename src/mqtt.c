@@ -5,6 +5,7 @@
 #include <MQTTAsync.h>
 #include <MQTTClient.h>
 #include "mqtt.h"
+#include "localOpr.h"
 
 #define ADDRESS     "tcp://localhost:1883"
 #define CLIENTID    "ExampleClientPub"
@@ -18,8 +19,7 @@ volatile MQTTClient_deliveryToken deliveredtoken;
 
 void delivered(void *context, MQTTClient_deliveryToken dt)
 {
-    printf("Message with token value %d delivery confirmed\n", dt);
-    deliveredtoken = dt;
+
 }
 
 int msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_message *message)
@@ -46,8 +46,7 @@ int msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_message *m
 
 void connlost(void *context, char *cause)
 {
-    printf("\nConnection lost\n");
-    printf("     cause: %s\n", cause);
+    localVideoOff();
 }
 
 int mqtt_client_publish(char *top, int qos, char *msg, int len)
@@ -64,10 +63,6 @@ int mqtt_client_publish(char *top, int qos, char *msg, int len)
     pubmsg.retained = 0;
     deliveredtoken = 0;
     MQTTClient_publishMessage(client, top, &pubmsg, &token);
-    printf("Waiting for publication of %s\n"
-            "on topic %s for client\n",
-            msg, top);
-    while (deliveredtoken != token);
     return 0;
 }
 

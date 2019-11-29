@@ -18,6 +18,16 @@ int main(void)
     // system("pkill firefox");
     // printf("close \n");
 
+    /* 1. Remote Video on */
+
+    /* 2. Open VideoChat App */
+
+    /* 3. wait till end indication */
+
+    /* 4. Remote Video off */
+
+    /* 5. VideoChat app off */
+
     mqttTest();
 
     return 0;
