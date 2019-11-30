@@ -69,7 +69,8 @@
 			"mqtt.h": "c",
 			"stdlib.h": "c",
 			"remotemachine.h": "c",
-			"string.h": "c"
+			"string.h": "c",
+			"localopr.h": "c"
 		}
 	}
 }

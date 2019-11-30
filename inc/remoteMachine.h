@@ -12,7 +12,6 @@ typedef struct remoteMachine
 remoteMachine_t *newRemoteMachine(char *remoteId);
 
 
-static void videoOn(struct remoteMachine *this);
-static void videoOff(struct remoteMachine *this);
+
 
 #endif

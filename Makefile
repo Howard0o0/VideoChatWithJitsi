@@ -1,20 +1,22 @@
 CC		= gcc
 CFLAGS	= -Wall -O2 -g
-LDFLAGS	= -lm -lpaho-mqtt3c -lpaho-mqtt3a
+LDFLAGS	= -lm -lpaho-mqtt3c -lpaho-mqtt3a -lpthread
 INCLUDES= -I $(shell pwd)/inc
 OBJS = objs/
 
 # user modify: subdir, target and objects
 VPATH 	=  src
-EXENAME =  VideoChatWithJitsi
+EXENAME =  videoChatWithJitsi
 OBJECTS	=  main.o \
-			mqtt.o
+			mqtt.o \
+			localOpr.o \
+			remoteMachine.o \
 
 
 
 # make target
 all:${OBJECTS}
-	${CC} -o ${EXENAME} $(OBJS)*.o ${LDFLAGS} ${INCLUDES}
+	${CC} -g -o ${EXENAME} $(OBJS)*.o ${LDFLAGS} ${INCLUDES}
 	
 # make clean
 clean:

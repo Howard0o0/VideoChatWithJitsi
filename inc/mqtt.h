@@ -5,8 +5,16 @@
 #include <MQTTAsync.h>
 #include <MQTTClient.h>
 
-void delivered(void *context, MQTTClient_deliveryToken dt);
+typedef struct mqttMsg_strcut
+{
+    char *topic;
+    char *payload;
+}mqttMsg_t;
 
+
+int mqttInit(void);
+
+void delivered(void *context, MQTTClient_deliveryToken dt);
 
 int msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_message *message);
 
@@ -24,3 +32,4 @@ int mqtt_client_open();
 
 
 int mqttTest(void);
+

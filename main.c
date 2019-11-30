@@ -3,7 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-
+#include "localOpr.h"
+#include "remoteMachine.h"
+#include <unistd.h>
 
 int main(void)
 {
@@ -18,6 +20,9 @@ int main(void)
     // system("pkill firefox");
     // printf("close \n");
 
+    /* 0. init */
+    mqttInit();
+
     /* 1. Remote Video on */
 
     /* 2. Open VideoChat App */
@@ -28,7 +33,11 @@ int main(void)
 
     /* 5. VideoChat app off */
 
-    mqttTest();
+    while (1)
+    {
+        sleep(10);
+    }
+    
 
     return 0;
 }

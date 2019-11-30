@@ -4,7 +4,8 @@
 #include <MQTTAsync.h>
 #include <MQTTClient.h>
 
-
+static void videoOn(struct remoteMachine *this);
+static void videoOff(struct remoteMachine *this);
 
 remoteMachine_t *newRemoteMachine(char *remoteId)
 {
