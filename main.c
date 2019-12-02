@@ -20,24 +20,25 @@ int main(void)
     // system("pkill firefox");
     // printf("close \n");
 
+    remoteMachine_t *pt_remoteLab = newRemoteMachine("lab");
+
     /* 0. init */
     mqttInit();
 
     /* 1. Remote Video on */
+    pt_remoteLab->videoOn(pt_remoteLab);
 
     /* 2. Open VideoChat App */
 
     /* 3. wait till end indication */
+    sleep(20);
 
     /* 4. Remote Video off */
+    pt_remoteLab->videoOff(pt_remoteLab);
+    pt_remoteLab->freeRemoteMachine(pt_remoteLab);
 
     /* 5. VideoChat app off */
-
-    while (1)
-    {
-        sleep(10);
-    }
-    
+    sleep(3);
 
     return 0;
 }

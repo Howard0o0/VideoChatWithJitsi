@@ -6,6 +6,7 @@ typedef struct remoteMachine
     char *remoteID;
     void (*videoOn)(struct remoteMachine *this);
     void (*videoOff)(struct remoteMachine *this);
+    void (*freeRemoteMachine)(struct remoteMachine *this);
 }remoteMachine_t;
 
 

@@ -6,6 +6,7 @@
 
 static void videoOn(struct remoteMachine *this);
 static void videoOff(struct remoteMachine *this);
+static void freeRemoteMachine(struct remoteMachine *this);
 
 remoteMachine_t *newRemoteMachine(char *remoteId)
 {
@@ -13,6 +14,7 @@ remoteMachine_t *newRemoteMachine(char *remoteId)
     ptNewRemoteMachine->remoteID = remoteId;
     ptNewRemoteMachine->videoOn = videoOn;
     ptNewRemoteMachine->videoOff = videoOff;
+    ptNewRemoteMachine->freeRemoteMachine = freeRemoteMachine;
 
     return ptNewRemoteMachine;
 }
@@ -40,4 +42,9 @@ static void videoOff(struct remoteMachine *this)
 
     mqtt_client_publish(pcTopic, 2, pcCmd, strlen(pcCmd));
     free(pcTopic);
+}
+
+static void freeRemoteMachine(struct remoteMachine *this)
+{
+    free(this);
 }
